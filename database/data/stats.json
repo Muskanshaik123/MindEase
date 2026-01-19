@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1768844458683,
+    "user_id": 1767117836088,
+    "days_active": 2,
+    "total_mood_entries": 7,
+    "total_journal_entries": 0,
+    "wellness_score": 71,
+    "last_updated": "2026-01-19T17:40:58.683Z"
+  },
+  {
+    "id": 1768844458717,
+    "user_id": 1767118472656,
+    "days_active": 0,
+    "total_mood_entries": 0,
+    "total_journal_entries": 0,
+    "wellness_score": 0,
+    "last_updated": "2026-01-19T17:40:58.717Z"
+  },
+  {
+    "id": 1768844458751,
+    "user_id": 1767118511471,
+    "days_active": 1,
+    "total_mood_entries": 2,
+    "total_journal_entries": 0,
+    "wellness_score": 50,
+    "last_updated": "2026-01-19T17:40:58.751Z"
+  },
+  {
+    "id": 1768844458785,
+    "user_id": 1767244931553,
+    "days_active": 0,
+    "total_mood_entries": 0,
+    "total_journal_entries": 0,
+    "wellness_score": 0,
+    "last_updated": "2026-01-19T17:40:58.785Z"
+  },
+  {
+    "id": 1768844458823,
+    "user_id": 1767245233125,
+    "days_active": 0,
+    "total_mood_entries": 0,
+    "total_journal_entries": 0,
+    "wellness_score": 0,
+    "last_updated": "2026-01-19T17:40:58.823Z"
+  },
+  {
+    "id": 1768848942548,
+    "user_id": 1767245543805,
+    "days_active": 6,
+    "total_mood_entries": 179,
+    "total_journal_entries": 23,
+    "wellness_score": 50,
+    "last_updated": "2026-01-19T18:55:42.548Z"
+  }
+]
