@@ -86,6 +86,7 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 | Frontend       | HTML, CSS, JavaScript            |
 | Backend        | Node.js, Express                 |
 | AI / ML        | Machine Learning, NLP            |
+| Database       | SQLite                      |
 | Email Services | Nodemailer, Google App Passwords |
 | Data Storage   | Excel (.xlsx)                    |
 | Configuration  | `.env`                           |
