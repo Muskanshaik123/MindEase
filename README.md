@@ -56,15 +56,14 @@
 3. **Login** and access your personalized dashboard  
 4. **Track mood**, **write journals**, and **listen to music**  
 5. Interact with the **AI chatbot** for tips and motivation  
-6. **Export journal and mood data** for personal analysis
+6. **Export journal and mood data** for personal analysi
+7. - 📈 Visual mood analytics charts  
 
 
 ## 📌 Future Improvements
 
 - 🌍 Multi-language chatbot  
 - 📱 Responsive design for mobile use  
-- 📈 Visual mood analytics charts  
-- 🔐 OAuth and Google Login integration
 
 
 
