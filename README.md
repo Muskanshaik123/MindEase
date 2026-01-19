@@ -2,7 +2,7 @@
 
 MindEase is a **full-stack AI-powered mental wellness web application** designed especially for students to **track emotions, analyze mental health patterns, and receive real, data-driven AI insights** in a secure and calming digital environment.
 
-Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to understand user mood trends and journal sentiment, enabling **personalized mental health guidance and intelligent chatbot support**.
+Unlike basic wellness apps, MindEase uses **Machine Learning, NLP, and the Google Gemini API** to understand user mood trends and journal sentiment, enabling **personalized mental health guidance, intelligent chatbot support, and AI-based diary recommendations**.
 
 > 🌈 *MindEase is not just a wellness tracker — it’s an intelligent digital companion for self-reflection and mental clarity.*
 
@@ -31,38 +31,39 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 
 ---
 
-### 📖 Intelligent Journaling System (NLP-Based)
+### 📖 Personal AI Journal Diary (NLP + Gemini AI)
 
-* Daily journal entry logging
-* **Natural Language Processing (NLP)** used to:
+* Daily **personal diary-style journal entries**
+* Uses **NLP + Gemini API** to:
 
   * Perform sentiment analysis
-  * Detect stress-related keywords
-  * Generate reflective AI insights
-* Export journal and mood logs in **Excel (.xlsx)** format
+  * Detect emotional tone and stress indicators
+  * Generate **AI-based reflective feedback & self-improvement suggestions**
+* Helps users understand emotions and receive **empathetic AI recommendations**
+* Journal insights adapt over time based on user patterns
 
 ---
 
-### 🤖 AI Wellness Chatbot
+### 🤖 AI Wellness Chatbot (Gemini API Powered)
 
-* Machine Learning powered conversational assistant
+* Conversational assistant powered by **Google Gemini API**
 * Provides:
 
-  * Emotional support & motivation
-  * Breathing and relaxation exercises
-  * Productivity and focus tips
-* Chatbot responses adapt based on:
+  * Emotional support and motivation
+  * Guided breathing and relaxation exercises
+  * Productivity, focus, and stress-management tips
+* Chatbot responses are **context-aware**, adapting based on:
 
   * User mood history
-  * Journal sentiment analysis
+  * Journal sentiment and diary insights
 
 ---
 
 ### 🎵 Personalized Meditation Player
 
 * Upload and play custom relaxing music
-* Helps users create a calming environment
-* Supports mindfulness, focus, and stress relief
+* Create a calming and mindful environment
+* Supports focus, stress relief, and relaxation
 
 ---
 
@@ -71,11 +72,9 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 * AI-generated wellness tips based on:
 
   * Current mood
-  * Mood trends
-  * Journal sentiment
-* Context-aware mental health suggestions
-
-
+  * Mood trends over time
+  * Personal diary analysis
+* Delivers **context-aware and personalized mental health guidance**
 
 ---
 
@@ -86,7 +85,8 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 | Frontend       | HTML, CSS, JavaScript            |
 | Backend        | Node.js, Express                 |
 | AI / ML        | Machine Learning, NLP            |
-| Database       | SQLite                      |
+| AI API         | **Google Gemini API**            |
+| Database       | SQLite                           |
 | Email Services | Nodemailer, Google App Passwords |
 | Configuration  | `.env`                           |
 
@@ -95,23 +95,23 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 ## 🚀 How It Works
 
 1. User signs up using email
-2. Verification link is sent to the email
-3. User logs in after verification
-4. Mood and journal entries are recorded
-5. ML models analyze emotional patterns
-6. AI chatbot provides personalized support
-7. Mood analytics and insights are displayed
-8. Data can be exported for self-analysis
+2. Account is verified via email link
+3. User logs into the dashboard
+4. Mood and personal diary entries are recorded
+5. ML + NLP models analyze emotional patterns
+6. Gemini-powered chatbot provides intelligent responses
+7. AI generates diary-based recommendations and insights
+8. Mood analytics and AI feedback are displayed
 
 ---
 
 ## 📈 AI & ML Highlights
 
-* Sentiment analysis on journal entries
-* Mood pattern detection over time
-* Personalized insight generation
-* Context-aware chatbot responses
-* Data-driven wellness recommendations
+* NLP-based sentiment analysis on journal entries
+* Mood trend detection over time
+* Gemini API–powered conversational intelligence
+* Personalized diary insights and recommendations
+* Context-aware mental wellness guidance
 
 ---
 
@@ -120,20 +120,15 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 ```
 project/
 │
-├── backend/                # Server-side logic (Node.js, Express, ML APIs)
-│
-├── config/                 # Configuration files (email, ML, environment setup)
-│
+├── backend/                # Server-side logic (Node.js, Express, AI & Gemini APIs)
+├── config/                 # Configuration files (email, Gemini API, environment)
 ├── database/
-│   ├── data/               # Stored mood & journal data (Excel / logs)
-│   └── database.js         # Database connection & data handling logic
-│
+│   ├── data/               # Stored mood & journal data
+│   └── database.js         # SQLite database logic
 ├── frontend/
 │   ├── assets/             # Images, icons, styles, media files
-│   └── pages/              # HTML pages (Login, Dashboard, Journal, etc.)
-│
+│   └── pages/              # Login, Dashboard, Journal, Chatbot pages
 ├── node_modules/           # Installed dependencies
-│
 ├── .gitignore              # Git ignored files
 └── README.md               # Project documentation
 ```
@@ -162,6 +157,7 @@ Create a `.env` file in the root directory:
 ```env
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_google_app_password
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ### 4️⃣ Start the Server
@@ -183,7 +179,7 @@ http://localhost:3000
 * 🌍 Multi-language AI chatbot
 * 📱 Fully responsive mobile UI
 * 🧠 Advanced ML-based stress prediction
-* 📊 Detailed emotional analytics & reports
+* 📊 Detailed emotional analytics & mental health reports
 
 ---
 
@@ -210,6 +206,6 @@ AI & Full-Stack Development Enthusiast
 
 ⭐ *If you find this project helpful, don’t forget to star the repository!* ⭐
 
+### 🎥 Sample Video Demo
 
-
-Sample Video Link:
+🔗 [https://drive.google.com/file/d/1fP0K5IrSDnTOz1y6FOR95cevPM8-qom4/view](https://drive.google.com/file/d/1fP0K5IrSDnTOz1y6FOR95cevPM8-qom4/view)
