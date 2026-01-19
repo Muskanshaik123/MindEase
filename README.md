@@ -88,7 +88,6 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
 | AI / ML        | Machine Learning, NLP            |
 | Database       | SQLite                      |
 | Email Services | Nodemailer, Google App Passwords |
-| Data Storage   | Excel (.xlsx)                    |
 | Configuration  | `.env`                           |
 
 ---
