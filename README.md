@@ -75,7 +75,7 @@ Unlike basic wellness apps, MindEase uses **Machine Learning and NLP** to unders
   * Journal sentiment
 * Context-aware mental health suggestions
 
----
+
 
 ---
 
@@ -133,10 +133,6 @@ project/
 │   └── pages/              # HTML pages (Login, Dashboard, Journal, etc.)
 │
 ├── node_modules/           # Installed dependencies
-│
-├── public/                 # Publicly accessible frontend files
-│
-├── storage/                # User uploads (music, temporary files)
 │
 ├── .gitignore              # Git ignored files
 └── README.md               # Project documentation
