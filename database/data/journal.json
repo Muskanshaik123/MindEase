@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1767616490961,
+    "user_id": 1767245543805,
+    "title": "Journal Entry",
+    "content": "hi",
+    "mood_rating": 3,
+    "tags": null,
+    "created_at": "2026-01-05T12:34:50.961Z",
+    "updated_at": "2026-01-05T12:34:50.961Z"
+  },
+  {
+    "id": 1767616508468,
+    "user_id": 1767245543805,
+    "title": "Journal Entry",
+    "content": "good girl",
+    "mood_rating": 3,
+    "tags": null,
+    "created_at": "2026-01-05T12:35:08.468Z",
+    "updated_at": "2026-01-05T12:35:08.468Z"
+  },
+  {
+    "id": 1767618125059,
+    "user_id": 1767245543805,
+    "title": "Journal Entry",
+    "content": "hi i am bad",
+    "mood_rating": 3,
+    "tags": null,
+    "created_at": "2026-01-05T13:02:05.059Z",
+    "updated_at": "2026-01-05T13:02:05.059Z"
+  },
+  {
+    "id": 1767706530841,
+    "user_id": 1767245543805,
+    "title": "I am good",
+    "content": "good",
+    "mood_rating": 4,
+    "tags": "doctor",
+    "created_at": "2026-01-06T13:35:30.841Z",
+    "updated_at": "2026-01-06T13:35:30.841Z"
+  },
+  {
+    "id": 1767708328324,
+    "user_id": 1767245543805,
+    "title": "I am good",
+    "content": "good",
+    "mood_rating": 4,
+    "tags": "doctor",
+    "created_at": "2026-01-06T14:05:28.324Z",
+    "updated_at": "2026-01-06T14:05:28.324Z"
+  },
+  {
+    "id": 1767709073093,
+    "user_id": 1767245543805,
+    "title": "Day2",
+    "content": "nice happy",
+    "mood_rating": 4,
+    "tags": null,
+    "created_at": "2026-01-06T14:17:53.093Z",
+    "updated_at": "2026-01-06T14:17:53.093Z"
+  },
+  {
+    "id": 1767710649764,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:09.764Z",
+    "updated_at": "2026-01-06T14:44:09.764Z"
+  },
+  {
+    "id": 1767710650509,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:10.509Z",
+    "updated_at": "2026-01-06T14:44:10.509Z"
+  },
+  {
+    "id": 1767710653562,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:13.562Z",
+    "updated_at": "2026-01-06T14:44:13.562Z"
+  },
+  {
+    "id": 1767710653789,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:13.789Z",
+    "updated_at": "2026-01-06T14:44:13.789Z"
+  },
+  {
+    "id": 1767710660690,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:20.690Z",
+    "updated_at": "2026-01-06T14:44:20.690Z"
+  },
+  {
+    "id": 1767710660899,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:20.899Z",
+    "updated_at": "2026-01-06T14:44:20.899Z"
+  },
+  {
+    "id": 1767710661106,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:21.106Z",
+    "updated_at": "2026-01-06T14:44:21.106Z"
+  },
+  {
+    "id": 1767710661313,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:21.313Z",
+    "updated_at": "2026-01-06T14:44:21.313Z"
+  },
+  {
+    "id": 1767710661514,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:21.514Z",
+    "updated_at": "2026-01-06T14:44:21.514Z"
+  },
+  {
+    "id": 1767710661724,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:21.724Z",
+    "updated_at": "2026-01-06T14:44:21.724Z"
+  },
+  {
+    "id": 1767710661905,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:21.905Z",
+    "updated_at": "2026-01-06T14:44:21.905Z"
+  },
+  {
+    "id": 1767710662126,
+    "user_id": 1767245543805,
+    "title": "Day5",
+    "content": "feeling dull",
+    "mood_rating": 2,
+    "tags": null,
+    "created_at": "2026-01-06T14:44:22.126Z",
+    "updated_at": "2026-01-06T14:44:22.126Z"
+  },
+  {
+    "id": 1767794394872,
+    "user_id": 1767245543805,
+    "title": "Day 6",
+    "content": "learned about basic coding skills",
+    "mood_rating": 4,
+    "tags": null,
+    "created_at": "2026-01-07T13:59:54.872Z",
+    "updated_at": "2026-01-07T13:59:54.872Z"
+  },
+  {
+    "id": 1768830405008,
+    "user_id": 1767245543805,
+    "title": "Day7",
+    "content": "good",
+    "mood_rating": 4,
+    "tags": null,
+    "created_at": "2026-01-19T13:46:45.008Z",
+    "updated_at": "2026-01-19T13:46:45.009Z"
+  }
+]

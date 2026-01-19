@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Ease | AI Wellness Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #76c7c0;
+            --primary-light: #c1e5e2;
+            --primary-dark: #5aa6a0;
+            --secondary: #f5cd79;
+            --secondary-light: #fae7bc;
+            --danger: #ef767a;
+            --warning: #f59e0b;
+            --info: #7c9eb2;
+            --light: #f0f7f7;
+            --dark: #333333;
+            --gray-100: #f9f9f9;
+            --gray-200: #eeeeee;
+            --gray-500: #888888;
+            --gray-700: #555555;
+            --white: #ffffff;
+            
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Chat-themed animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .chat-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .chat-bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            animation: bubble-float 12s ease-in-out infinite;
+            backdrop-filter: blur(2px);
+        }
+        
+        @keyframes bubble-float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-30px) translateX(20px);
+                opacity: 0.7;
+            }
+        }
+        
+        .ai-symbols {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .ai-symbol {
+            position: absolute;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: symbol-drift 18s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes symbol-drift {
+            0% {
+                transform: translateY(100vh) translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(80px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .chat-container {
+            flex: 1;
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 200px);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .chat-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .chat-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: var(--gray-100);
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease-out;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            background: white;
+            color: var(--dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            border-bottom-left-radius: 5px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .typing-dots {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-500);
+            margin-right: 5px;
+            animation: typing 1.4s infinite both;
+        }
+        
+        .typing-dots:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dots:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding: 1.5rem 2rem;
+            background: white;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .suggestion-btn {
+            background: var(--gray-100);
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 1.25rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .suggestion-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 1.5rem 2rem;
+            background: white;
+            border-top: 1px solid var(--gray-200);
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 25px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+            resize: none;
+            min-height: 50px;
+            max-height: 120px;
+        }
+        
+        .message-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(118, 199, 192, 0.1);
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-left: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Mood indicators */
+        .mood-indicator {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        
+        .mood-positive {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+        
+        .mood-negative {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+        
+        .mood-neutral {
+            background: rgba(107, 114, 128, 0.1);
+            color: #4b5563;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .chat-container {
+                margin: 1rem;
+                height: calc(100vh - 120px);
+            }
+            
+            .chat-header {
+                padding: 1.5rem;
+            }
+            
+            .chat-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .chat-messages {
+                padding: 1rem;
+            }
+            
+            .suggestions {
+                padding: 1rem;
+            }
+            
+            .chat-input {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chat-themed Background -->
+    <div class="bg-animation">
+        <div class="chat-bubbles">
+            <div class="chat-bubble" style="width: 80px; height: 40px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="chat-bubble" style="width: 120px; height: 60px; top: 50%; left: 80%; animation-delay: 2s;"></div>
+            <div class="chat-bubble" style="width: 100px; height: 50px; top: 70%; left: 15%; animation-delay: 4s;"></div>
+            <div class="chat-bubble" style="width: 90px; height: 45px; top: 30%; left: 70%; animation-delay: 1s;"></div>
+        </div>
+        <div class="ai-symbols" id="aiSymbols"></div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-robot"></i>
+            <span>AI Wellness Assistant</span>
+        </div>
+        <a href="/main-dashboard" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+    </header>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>
+                <i class="fas fa-brain"></i>
+                MindEase AI Chatbot
+            </h1>
+            <p>Your 24/7 emotional support companion powered by AI</p>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="bot-message message">
+                <strong>🤖 MindEase AI:</strong> Hello! I'm your personal AI wellness assistant. I'm here to provide emotional support, helpful advice, and a listening ear whenever you need it. 
+                <br><br>
+                How are you feeling today? You can tell me about your mood, ask for advice, or just chat about what's on your mind. 💙
+            </div>
+        </div>
+        
+        <div class="suggestions">
+            <button class="suggestion-btn" onclick="sendSuggestion('I feel anxious about work')">😰 I feel anxious</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('I\'m having a great day!')">😊 I'm happy today</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('I need some motivation')">💪 Need motivation</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('I feel lonely')">😔 Feeling lonely</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('Help me relax')">🧘‍♀️ Help me relax</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('I\'m stressed out')">😤 I'm stressed</button>
+        </div>
+        
+        <div class="chat-input">
+            <textarea class="message-input" id="messageInput" placeholder="Type your message here... I'm here to listen and help!" onkeypress="handleKeyPress(event)" rows="1"></textarea>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <span class="typing-dots"></span>
+            <span class="typing-dots"></span>
+            <span class="typing-dots"></span>
+            <span style="margin-left: 0.5rem;">🧠 Real-time AI is thinking...</span>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication - localStorage only
+        const sessionToken = localStorage.getItem('sessionToken');
+        if (!sessionToken) {
+            window.location.href = '/';
+        }
+        
+        // Enhanced chatbot responses with more empathy and variety
+        const responses = {
+            greetings: [
+                "Hello there! 👋 I'm so glad you're here. What's on your mind today?",
+                "Hi friend! 😊 How can I support you right now?",
+                "Welcome! 🌟 I'm here to listen and help however I can.",
+                "Hey there! 💙 What would you like to talk about today?"
+            ],
+            happy: [
+                "That's wonderful! 🎉 Your happiness is contagious! What's bringing you joy today?",
+                "I love hearing that! 😄 Happiness looks good on you. Want to share what's making you feel so great?",
+                "Amazing! ✨ Your positive energy is beautiful. How can we keep this good mood going?",
+                "Fantastic! 🌈 It's so nice to hear you're doing well. What's been the highlight of your day?",
+                "Yay! 🥳 Your joy makes my circuits light up! Tell me more about what's making you smile."
+            ],
+            sad: [
+                "I'm really sorry you're feeling this way. 💙 Your feelings are completely valid, and I'm here for you.",
+                "That sounds really tough. 🫂 Thank you for sharing with me. You don't have to go through this alone.",
+                "I hear you, and I want you to know that it's okay to feel sad sometimes. 💛 Would you like to talk about what's bothering you?",
+                "I'm sending you virtual hugs. 🤗 Difficult emotions are part of being human. What would help you feel a little better right now?",
+                "Your feelings matter, and so do you. 💝 Sometimes we need to sit with sadness for a while, and that's okay too."
+            ],
+            anxious: [
+                "Anxiety can feel overwhelming, but you're not alone in this. 🌸 Let's try some grounding techniques together.",
+                "I understand how scary anxiety can be. 💙 Try this: name 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, and 1 you can taste.",
+                "Anxiety is your mind trying to protect you, but sometimes it goes overboard. 🛡️ Let's work on some calming strategies.",
+                "Take a deep breath with me. 🌬️ In for 4... hold for 4... out for 6. You're safe right now.",
+                "Anxiety feels big, but you're bigger. 💪 What usually helps you feel more grounded?"
+            ],
+            stressed: [
+                "Stress is like a heavy backpack - let's help you unpack some of that weight. 🎒 What's the biggest thing stressing you out?",
+                "When everything feels urgent, nothing actually is. 📝 Let's prioritize what really needs your attention today.",
+                "Stress is your body's alarm system, but sometimes it gets stuck on. 🚨 What would help you feel more in control?",
+                "You're handling more than you realize. 🌟 Give yourself credit for everything you're managing right now.",
+                "Stress often comes from trying to control things we can't. 🍃 What's one thing you can let go of today?"
+            ],
+            lonely: [
+                "Loneliness is one of the hardest feelings, but you're not as alone as you think. 💙 I'm here with you right now.",
+                "Even when we're surrounded by people, we can feel lonely. 🫂 Your feelings are valid, and connection is a basic human need.",
+                "Loneliness is temporary, even when it doesn't feel that way. 🌅 What's one small way you could connect with someone today?",
+                "You matter, and your presence in this world makes a difference. 🌟 Sometimes we need to be reminded that we're valued.",
+                "Feeling lonely doesn't mean you're broken - it means you're human. 💛 What kind of connection are you craving most?"
+            ],
+            motivation: [
+                "You've overcome challenges before, and you'll overcome this one too. 💪 What's one small step you can take today?",
+                "Motivation isn't a feeling you wait for - it's something you create through action. 🚀 What's one tiny thing you can do right now?",
+                "You're stronger than you know, braver than you feel, and more capable than you imagine. ✨ What goal matters most to you?",
+                "Every expert was once a beginner. Every pro was once an amateur. 🌱 Progress, not perfection, is the goal.",
+                "The fact that you're here, asking for motivation, shows you haven't given up. 🔥 That's already something to be proud of."
+            ],
+            relax: [
+                "Let's create some calm together. 🧘‍♀️ Close your eyes and imagine you're in your favorite peaceful place. What do you see?",
+                "Relaxation is a skill, and like any skill, it gets better with practice. 🌸 What usually helps you unwind?",
+                "Your nervous system needs permission to relax. 🌿 Try this: tense all your muscles for 5 seconds, then release. Feel that relief?",
+                "Imagine stress leaving your body like water flowing down a drain. 💧 What would you like to replace that stress with?",
+                "Sometimes the best thing we can do is nothing at all. 🛋️ Give yourself permission to just be for a moment."
+            ],
+            default: [
+                "That's really interesting. Tell me more about how you're feeling about that. 🤔",
+                "I'm listening. Sometimes it helps just to have someone hear what you're going through. 👂",
+                "Thank you for sharing that with me. What's the most important thing for you right now? 💭",
+                "I can hear that this matters to you. What would make you feel better about this situation? 🌟",
+                "You're being really thoughtful about this. What does your gut tell you? 💙"
+            ]
+        };
+
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Auto-resize textarea
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                messageInput.value = '';
+                messageInput.style.height = 'auto';
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Bot responds after a delay
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    processUserMessage(message);
+                }, 1000 + Math.random() * 2000);
+            }
+        }
+
+        function sendSuggestion(message) {
+            messageInput.value = message;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.innerHTML = `<strong>You:</strong> ${text}`;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(text, mood = null, isAI = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            
+            let moodIndicator = '';
+            if (mood) {
+                const moodEmojis = {
+                    'positive': '😊',
+                    'negative': '😔',
+                    'neutral': '😐'
+                };
+                moodIndicator = `<span class="mood-indicator mood-${mood}">${moodEmojis[mood]} Detected: ${mood} mood</span><br>`;
+            }
+            
+            let aiIndicator = '';
+            if (isAI) {
+                aiIndicator = '<span style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 0.25rem 0.5rem; border-radius: 10px; font-size: 0.7rem; margin-right: 0.5rem;">🧠 REAL-TIME AI</span>';
+            }
+            
+            messageDiv.innerHTML = `<strong>🤖 MindEase AI:</strong> ${aiIndicator}${moodIndicator}${text}`;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = 'block';
+            chatMessages.appendChild(typingIndicator);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function processUserMessage(message) {
+            // Call the real-time AI API instead of using local responses
+            callAIAPI(message);
+        }
+
+        async function callAIAPI(message) {
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        userEmail: 'demo@mindease.com' // You can get this from session
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Determine mood based on sentiment analysis
+                    let detectedMood = null;
+                    if (data.sentiment) {
+                        if (data.sentiment.classification === 'positive') {
+                            detectedMood = 'positive';
+                        } else if (data.sentiment.classification === 'negative') {
+                            detectedMood = 'negative';
+                        } else {
+                            detectedMood = 'neutral';
+                        }
+                    }
+
+                    // Add AI response with mood indicator and AI badge
+                    addBotMessage(data.response, detectedMood, !data.fallback);
+                    
+                    // Show if this was a fallback response
+                    if (data.fallback) {
+                        setTimeout(() => {
+                            addBotMessage("(I'm currently using my backup responses. My advanced AI is temporarily unavailable, but I'm still here to help! 🤖)", 'neutral');
+                        }, 1000);
+                    }
+                } else {
+                    addBotMessage("I'm sorry, I'm having trouble connecting right now. Please try again in a moment. 🔄", 'neutral');
+                }
+            } catch (error) {
+                console.error('Error calling AI API:', error);
+                addBotMessage("I'm experiencing some technical difficulties. Let me try to help you with my basic responses. 💙", 'neutral');
+                
+                // Fallback to local processing
+                processLocalMessage(message);
+            }
+        }
+
+        // Keep the original local processing as a backup
+        function processLocalMessage(message) {
+            const lowerMessage = message.toLowerCase();
+            let response;
+            let detectedMood = null;
+            
+            // Enhanced keyword detection with mood analysis
+            if (lowerMessage.includes('happy') || lowerMessage.includes('great') || lowerMessage.includes('good') || lowerMessage.includes('amazing') || lowerMessage.includes('wonderful')) {
+                response = responses.happy[Math.floor(Math.random() * responses.happy.length)];
+                detectedMood = 'positive';
+            } 
+            else if (lowerMessage.includes('sad') || lowerMessage.includes('awful') || lowerMessage.includes('down') || lowerMessage.includes('depressed') || lowerMessage.includes('terrible')) {
+                response = responses.sad[Math.floor(Math.random() * responses.sad.length)];
+                detectedMood = 'negative';
+            }
+            else if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('worried') || lowerMessage.includes('panic') || lowerMessage.includes('nervous')) {
+                response = responses.anxious[Math.floor(Math.random() * responses.anxious.length)];
+                detectedMood = 'negative';
+            }
+            else if (lowerMessage.includes('stress') || lowerMessage.includes('overwhelmed') || lowerMessage.includes('pressure') || lowerMessage.includes('deadline') || lowerMessage.includes('busy')) {
+                response = responses.stressed[Math.floor(Math.random() * responses.stressed.length)];
+                detectedMood = 'negative';
+            }
+            else if (lowerMessage.includes('lonely') || lowerMessage.includes('alone') || lowerMessage.includes('isolated') || lowerMessage.includes('disconnected')) {
+                response = responses.lonely[Math.floor(Math.random() * responses.lonely.length)];
+                detectedMood = 'negative';
+            }
+            else if (lowerMessage.includes('motivation') || lowerMessage.includes('motivated') || lowerMessage.includes('give up') || lowerMessage.includes('can\'t do') || lowerMessage.includes('lazy')) {
+                response = responses.motivation[Math.floor(Math.random() * responses.motivation.length)];
+                detectedMood = 'neutral';
+            }
+            else if (lowerMessage.includes('relax') || lowerMessage.includes('calm') || lowerMessage.includes('peace') || lowerMessage.includes('meditation') || lowerMessage.includes('breathe')) {
+                response = responses.relax[Math.floor(Math.random() * responses.relax.length)];
+                detectedMood = 'neutral';
+            }
+            else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey') || lowerMessage.includes('good morning') || lowerMessage.includes('good evening')) {
+                response = responses.greetings[Math.floor(Math.random() * responses.greetings.length)];
+            }
+            else {
+                response = responses.default[Math.floor(Math.random() * responses.default.length)];
+                detectedMood = 'neutral';
+            }
+            
+            addBotMessage(response, detectedMood);
+        }
+
+        // Initialize with a greeting
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                scrollToBottom();
+            }, 100);
+        });
+        
+        // Create floating AI symbols animation
+        function createAISymbols() {
+            const symbols = ['🤖', '💬', '🧠', '💡', '⚡', '🔮', '🎯', '✨'];
+            const symbolsContainer = document.getElementById('aiSymbols');
+            
+            setInterval(() => {
+                const symbol = document.createElement('div');
+                symbol.className = 'ai-symbol';
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.left = Math.random() * 100 + '%';
+                symbol.style.animationDelay = '0s';
+                symbol.style.animationDuration = (Math.random() * 8 + 15) + 's';
+                symbolsContainer.appendChild(symbol);
+                
+                setTimeout(() => {
+                    if (symbol.parentNode) {
+                        symbol.parentNode.removeChild(symbol);
+                    }
+                }, 23000);
+            }, 3500);
+        }
+        
+        // Start AI symbols animation
+        createAISymbols();
+    </script>
+</body>
+</html>
