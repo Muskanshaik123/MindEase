@@ -3,7 +3,7 @@ require('dotenv').config();
 // Manual environment loading as fallback
 if (!process.env.GEMINI_API_KEY) {
     console.log('⚠️ dotenv failed, loading manually...');
-    process.env.GEMINI_API_KEY = 'AIzaSyD-rWuxMQ7tsOHeiGVThBb-l28pflGl_9w';
+    process.env.GEMINI_API_KEY = 'Your api key';
     process.env.NODE_ENV = 'development';
     console.log('✅ Environment variables loaded manually');
 }
@@ -1459,3 +1459,4 @@ if (initializeDatabase()) {
     console.error('Failed to start server due to database initialization error');
     process.exit(1);
 }
+
